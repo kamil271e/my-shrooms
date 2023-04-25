@@ -1,0 +1,31 @@
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, BatchNormalization, Flatten
+from keras.applications import MobileNetV3Large
+from tensorflow.keras.applications.mobilenet_v3 import preprocess_input
+from NetUtils import NetUtils
+
+class MobileNet(NetUtils):
+    
+    def __init__(self, input_shape, num_classes, load_weights = None):
+        self.input_shape = input_shape
+        self.mobilenet_base = MobileNetV3Large(weights='imagenet',
+                                        include_top=False,
+                                        input_shape=input_shape)
+        self.model = Sequential()
+        self.model.add(self.mobilenet_base)
+        self.model.add(Flatten())
+        self.model.add(Dense(16, activation='relu'))
+        self.model.add(Dense(num_classes, activation='softmax'))
+        self.model.layers[0].trainable = False
+        
+        self.model.compile(loss='categorical_crossentropy',
+                           optimizer='adam',
+                           metrics=['accuracy'])
+        
+        if load_weights:
+            self.model.load_weights(load_weights)
+            
+            
+    def create_generators(self, train_dir, val_dir, test_dir, batch_size, data_augm=False, preprocessing_function=None):
+        super().create_generators(train_dir, val_dir, test_dir, batch_size, data_augm, 
+                                  preprocessing_function=preprocess_input)

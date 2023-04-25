@@ -3,3 +3,5 @@ mushrooms
 __pycache__
 .ipynb_checkpoints
 *.h5
+*.txt
+*.png

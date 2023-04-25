@@ -32,8 +32,3 @@ def acc_plot(history_dict, epochs=20):
     plt.legend()
     plt.show()
     
-
-
-# If GPU ran out of memory in jupyter:
-# from keras import backend as K
-# K.clear_session()
