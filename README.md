@@ -1,2 +1,2 @@
 # my-shrooms
-Mushroom classification task
+[Mushroom image classification task](https://www.kaggle.com/datasets/maysee/mushrooms-classification-common-genuss-images)
