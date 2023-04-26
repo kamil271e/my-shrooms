@@ -100,7 +100,7 @@ class NetUtils:
         y_true = self.test_generator.classes
         class_names = list(self.test_generator.class_indices.keys())
         report = classification_report(y_true, y_pred, target_names=class_names)
-        return report
+        print(report)
     
     
     # preprocess input

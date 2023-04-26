@@ -17,12 +17,17 @@ def acc_plot(history_dict, epochs=20):
     x = np.arange(1,epochs+1)
     if 'binary_accuracy' in history_dict.keys():
         train_acc = history_dict['binary_accuracy']
-    else:
+    elif 'accuracy' in history_dict.keys():
         train_acc = history_dict['accuracy']
+    else:
+        train_acc = history_dict['acc']
+        
     if 'val_binary_accuracy' in history_dict.keys():
         val_acc = history_dict['val_binary_accuracy']
-    else:
+    elif 'val_accuracy' in history_dict.keys():
         val_acc = history_dict['val_accuracy']
+    else:
+        val_acc = history_dict['val_acc']
 
     plt.title('Train accuracy & validation accuracy')
     plt.xlabel('Epochs')
